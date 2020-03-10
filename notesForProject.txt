@@ -1,0 +1,39 @@
+employees 
+--insert into dbo.employees(firstname, lastname, username, employeenumber, email)
+--select 'Josh','Stevens','J.Stevens',100,'Josh.Stevens@HSWM.com'
+--insert into dbo.employees(firstname, lastname, username, employeenumber, email)
+--select 'Percy','Jackson','P.Jackson',101,'Percy.Jackson@HSWM.com'
+--insert into dbo.employees(firstname, lastname, username, employeenumber, email)
+--select 'Harry','Potter','H.Potter',102,'Harry.Potter@HSWM.com'
+--insert into dbo.employees(firstname, lastname, username, employeenumber, email)
+--select 'Tim','Drake','T.Drake',103, 'Tim.Drake@HSWM.com'
+--insert into dbo.employees(firstname, lastname, username, employeenumber, email)
+--select 'Bruce','Wayne','B.Wayne',104,'Bruce.Wayne@HSWM.com'
+
+
+
+
+Rooms
+
+--insert into dbo.rooms(roomnumber)
+select 101
+--insert into dbo.rooms(roomnumber)
+select 102
+--insert into dbo.rooms(roomnumber)
+select 103
+--insert into dbo.rooms(roomnumber)
+select 104
+--insert into dbo.rooms(roomnumber)
+select 105
+--insert into dbo.rooms(roomnumber)
+select 106
+--insert into dbo.rooms(roomnumber)
+select 107
+--insert into dbo.rooms(roomnumber)
+select 108
+--insert into dbo.rooms(roomnumber)
+select 109
+--insert into dbo.rooms(roomnumber)
+select 110
+--insert into dbo.rooms(roomnumber)
+select 111
