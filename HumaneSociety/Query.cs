@@ -172,7 +172,7 @@ namespace HumaneSociety
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            var addAnimal = db.Animals.Where(a => a.Name == animal.Name);
         }
 
         internal static Animal GetAnimalByID(int id)

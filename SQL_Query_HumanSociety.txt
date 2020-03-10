@@ -1,4 +1,4 @@
-Animals Table
+Gus Animals Table
 
 INSERT INTO dbo.Animals (Name, Weight, Age, Demeanor, KidFriendly, PetFriendly, Gender, AdoptionStatus, CategoryId)
 VALUES ('Harley', 5, 1, 'Friendly', 1, 1, 'Male', 'Active', 2)
