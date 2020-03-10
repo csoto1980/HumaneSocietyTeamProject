@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Gus Animals Table
+=======
+dbo.Animals Table
+>>>>>>> 900eab688bac4fa4a34daa326470ad9b1e110fa8
 
 INSERT INTO dbo.Animals (Name, Weight, Age, Demeanor, KidFriendly, PetFriendly, Gender, AdoptionStatus, CategoryId)
 VALUES ('Harley', 5, 1, 'Friendly', 1, 1, 'Male', 'Active', 2)
@@ -14,3 +18,20 @@ VALUES ('Fluffy', 6, 2, 'Happy', 1, 1, 'Female', 'Active', 4)
 
 INSERT INTO dbo.Animals (Name, Weight, Age, Demeanor, KidFriendly, PetFriendly, Gender, AdoptionStatus, CategoryId)
 VALUES ('Buddy', 20, 3, 'Playful', 1, 1, 'Male', 'Active', 1) 
+
+dbo.Categories Table
+
+INSERT INTO dbo.Categories (Name)
+VALUES ('Dogs')
+
+INSERT INTO dbo.Categories (Name)
+VALUES ('Cats')
+
+INSERT INTO dbo.Categories (Name)
+VALUES ('Hamsters')
+
+INSERT INTO dbo.Categories (Name)
+VALUES ('Rabbits')
+
+INSERT INTO dbo.Categories (Name)
+VALUES ('Birds')
