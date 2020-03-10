@@ -31,3 +31,52 @@ VALUES ('Rabbits')
 
 INSERT INTO dbo.Categories (Name)
 VALUES ('Birds')
+
+Rooms | Animal ID's Added
+
+UPDATE dbo.Rooms
+SET AnimalId = 5
+WHERE RoomNumber = 101
+
+UPDATE dbo.Rooms
+SET AnimalId = 1
+WHERE RoomNumber = 102
+
+UPDATE dbo.Rooms
+SET AnimalId = 2
+WHERE RoomNumber = 103
+
+UPDATE dbo.Rooms
+SET AnimalId = 4
+WHERE RoomNumber = 104
+
+UPDATE dbo.Rooms
+SET AnimalId = 3
+WHERE RoomNumber = 105
+
+
+Adding AddressID to Clients table
+
+UPDATE dbo.Clients
+SET AddressId = 1
+WHERE FirstName = 'Peter'
+
+UPDATE dbo.Clients
+SET AddressId = 3
+WHERE FirstName = 'Wade'
+
+UPDATE dbo.Clients
+SET AddressId = 2
+WHERE FirstName = 'Macaulay'
+
+UPDATE dbo.Clients
+SET AddressId = 4
+WHERE FirstName = 'Paul'
+
+UPDATE dbo.Clients
+SET AddressId = 5
+WHERE FirstName = 'Homer'
+
+
+
+

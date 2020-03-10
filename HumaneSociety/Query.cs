@@ -166,17 +166,22 @@ namespace HumaneSociety
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
+            //Create
+            //Read
+            //Update
+            //Delete
             throw new NotImplementedException();
         }
 
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            Animal animals = new Animal();
         }
 
         internal static Animal GetAnimalByID(int id)
         {
+            Animal animalID = db.Animals.Where(a => a.AnimalId == animalId);
             throw new NotImplementedException();
         }
 
@@ -187,6 +192,8 @@ namespace HumaneSociety
 
         internal static void RemoveAnimal(Animal animal)
         {
+            
+            
             throw new NotImplementedException();
         }
         
