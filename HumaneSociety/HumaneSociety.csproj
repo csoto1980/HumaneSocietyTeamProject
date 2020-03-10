@@ -46,10 +46,17 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Customer.cs" />
+<<<<<<< HEAD
     <Compile Include="HumanSociety.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HumanSociety.dbml</DependentUpon>
+=======
+    <Compile Include="HumaneSociety.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HumaneSociety.dbml</DependentUpon>
+>>>>>>> e44f5f95687265c7ca70b007867c4e0b972838cd
     </Compile>
     <Compile Include="PointOfEntry.cs" />
     <Compile Include="Program.cs" />
@@ -66,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+<<<<<<< HEAD
     <None Include="HumanSociety.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>HumanSociety.designer.cs</LastGenOutput>
@@ -73,6 +81,15 @@
     </None>
     <None Include="HumanSociety.dbml.layout">
       <DependentUpon>HumanSociety.dbml</DependentUpon>
+=======
+    <None Include="HumaneSociety.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>HumaneSociety.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HumaneSociety.dbml.layout">
+      <DependentUpon>HumaneSociety.dbml</DependentUpon>
+>>>>>>> e44f5f95687265c7ca70b007867c4e0b972838cd
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
