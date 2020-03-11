@@ -167,6 +167,7 @@ namespace HumaneSociety
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
             //Create
+            Employee employees = new Employee();
             //Read
             //Update
             //Delete
@@ -177,21 +178,19 @@ namespace HumaneSociety
         internal static void AddAnimal(Animal animal)
         {
 
-            Animal animals = new Animal();
-
             var addAnimal = db.Animals.Where(a => a.Name == animal.Name);
 
         }
 
         internal static Animal GetAnimalByID(int id)
         {
-            //Animal animalID = db.Animals.Where(a => a.AnimalId == animalId);
-            throw new NotImplementedException();
+            return db.Animals.SingleOrDefault(b => b.AnimalId == id);
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
-        {            
-            throw new NotImplementedException();
+        {
+
+            //throw new NotImplementedException();
         }
 
         internal static void RemoveAnimal(Animal animal)
