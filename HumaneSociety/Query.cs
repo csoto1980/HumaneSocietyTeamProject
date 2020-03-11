@@ -163,6 +163,12 @@ namespace HumaneSociety
 
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
+
+            // do basiclly same stuff as we do for the animals
+            // create 
+            // delete
+            // update
+
             switch (crudOperation)
             {
                 case "Create":
@@ -234,12 +240,58 @@ namespace HumaneSociety
         }
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
+<<<<<<< HEAD
             throw new NotImplementedException();
+=======
+            Animal animalFromDb = null;
+
+            try
+            {
+                animalFromDb = db.Animals.Where(g => g.AnimalId == animalId).SingleOrDefault();
+            }
+            catch (InvalidOperationException g)
+            {
+                Console.WriteLine("No clients have a ClientId that matches the Client passed in.");
+                Console.WriteLine("No update have been made.");
+                return;
+            }
+            foreach (KeyValuePair<int, string> value in updates)
+            {
+                switch (value.Key)
+                {
+                    case 1:
+                        animalFromDb.Category.Name = value.Value;
+                        break;
+                    case 2:
+                        animalFromDb.Name = value.Value;
+                        break;
+                    case 3:
+                        animalFromDb.Age = int.Parse(value.Value);
+                        break;
+                    case 4:
+                        animalFromDb.Demeanor = value.Value;
+                            break;
+                    case 5:
+                        animalFromDb.KidFriendly = Convert.ToBoolean(value.Value);
+                        break;
+                    case 6:
+                        animalFromDb.PetFriendly = Convert.ToBoolean(value.Value);
+                        break;
+                    case 7:
+                        animalFromDb.Weight = int.Parse(value.Value);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            db.SubmitChanges();
+>>>>>>> 0f6c7c580326af440b7782f4da944e81005393cf
         }
         internal static void RemoveAnimal(Animal animal)
         {
             db.Animals.DeleteOnSubmit(animal);
             db.SubmitChanges();
+
         }
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
@@ -249,7 +301,8 @@ namespace HumaneSociety
         // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
-            throw new NotImplementedException();
+           db.Categories.SingleOrDefault(e => e.CategoryId == categoryName.CategoryId);
+           
         }
 
         internal static Room GetRoom(int animalId)
