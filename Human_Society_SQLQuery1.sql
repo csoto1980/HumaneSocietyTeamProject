@@ -1,1 +1,1 @@
-UPDATE dbo.Animals SET DietPlanId = 9 WHERE Name = 'Buddy'
+SELECT * FROM dbo.Animals
