@@ -10,22 +10,21 @@ namespace HumaneSociety
     {
         internal static void CreateNewEmployee()
         {
-            private void AddAnimal()
-            Console.Clear();
+            public static void DisplayAnimalInfo(Animal animal)
+            {
+                Room animalRoom = Query.GetRoom(animal.AnimalId);
+                List<string> info = new List<string>() { "ID: " + animal.AnimalId, animal.Name, animal.Age + "years old", "Demeanour: " + animal.Demeanor, "Kid friendly: " + BoolToYesNo(animal.KidFriendly), "pet friendly: " + BoolToYesNo(animal.PetFriendly), $"Location: " + animalRoom.RoomId, "Weight: " + animal.Weight.ToString(), "Food amoumnt in cups:" + animal.DietPlan.FoodAmountInCups };
+                DisplayUserOptions(info);
+                Console.ReadLine();
 
-            string animalCategoryName = UserInterface.GetStringData("category/breed", "the name of the animal's");
-            string animalDietPlanName = UserInterface.GetStringData("diet plan", "the name of the animal's");
+            }
+            internal static Client GetClient(string userName, string password)
+            {
+                Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
 
-            Animal animal = new Animal();
-            animal.CategoryId = Query.GetCategoryId(animalCategoryName);
-            animal.Name = UserInterface.GetStringData("name", "the animal's");
-            animal.Age = UserInterface.GetIntegerData("age", "the animal's");
-            animal.Demeanor = UserInterface.GetStringData("demeanor", "the animal's");
-            animal.KidFriendly = UserInterface.GetBitData("the animal", "child friendly");
-            animal.PetFriendly = UserInterface.GetBitData("the animal", "pet friendly");
-            animal.Weight = UserInterface.GetIntegerData("the animal", "the weight of the");
-            animal.DietPlanId = Query.GetDietPlanId(animalDietPlanName);
-            Query.AddAnimal(animal);
+                return client;
+            }
+
         }
     }
  }

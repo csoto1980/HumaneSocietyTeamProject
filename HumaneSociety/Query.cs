@@ -158,17 +158,8 @@ namespace HumaneSociety
 
             return employeeWithUserName != null;
         }
-
-        //// TODO Items: ////
-
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
-
-            // do basiclly same stuff as we do for the animals
-            // create 
-            // delete
-            // update
-
             switch (crudOperation)
             {
                 case "Create":
@@ -216,7 +207,6 @@ namespace HumaneSociety
             employeeFromDb.Email = employee.Email;
             db.SubmitChanges();
         }
-        // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
             string animalCategoryName = UserInterface.GetStringData("category/breed", "the name of the animal's");
@@ -240,11 +230,7 @@ namespace HumaneSociety
         }
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-<<<<<<< HEAD
-            throw new NotImplementedException();
-=======
             Animal animalFromDb = null;
-
             try
             {
                 animalFromDb = db.Animals.Where(g => g.AnimalId == animalId).SingleOrDefault();
@@ -277,7 +263,7 @@ namespace HumaneSociety
                     case 6:
                         animalFromDb.PetFriendly = Convert.ToBoolean(value.Value);
                         break;
-                    case 7:
+                   case 7:
                         animalFromDb.Weight = int.Parse(value.Value);
                         break;
                     default:
@@ -285,13 +271,11 @@ namespace HumaneSociety
                 }
             }
             db.SubmitChanges();
->>>>>>> 0f6c7c580326af440b7782f4da944e81005393cf
         }
         internal static void RemoveAnimal(Animal animal)
         {
             db.Animals.DeleteOnSubmit(animal);
             db.SubmitChanges();
-
         }
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
@@ -301,13 +285,15 @@ namespace HumaneSociety
         // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
-           db.Categories.SingleOrDefault(e => e.CategoryId == categoryName.CategoryId);
-           
-        }
+            var theintneeded = db.Categories.Where(a => a.Name == categoryName).Select(a => a.CategoryId).FirstOrDefault();
+            return theintneeded;
 
+        }
         internal static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            Room room = db.Rooms.Where(r => r.AnimalId == animalId).Single();
+            return room;
+
         }
 
         internal static int GetDietPlanId(string dietPlanName)
