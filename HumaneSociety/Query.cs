@@ -158,17 +158,8 @@ namespace HumaneSociety
 
             return employeeWithUserName != null;
         }
-
-        //// TODO Items: ////
-
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
-
-            // do basiclly same stuff as we do for the animals
-            // create 
-            // delete
-            // update
-
             switch (crudOperation)
             {
                 case "Create":
@@ -216,28 +207,30 @@ namespace HumaneSociety
             employeeFromDb.Email = employee.Email;
             db.SubmitChanges();
         }
-        // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
-            db.Animals.Where(a => a.Name == animal.Name);
-            db.Animals.Where(a => a.Weight == animal.Weight);
-            db.Animals.Where(a => a.Age == animal.Age);
-            db.Animals.Where(a => a.Demeanor == animal.Demeanor);
-            db.Animals.Where(a => a.KidFriendly == animal.KidFriendly);
-            db.Animals.Where(a => a.Gender == animal.Gender);
-            db.Animals.Where(a => a.AdoptionStatus == animal.AdoptionStatus);
-            db.SubmitChanges();
+            string animalCategoryName = UserInterface.GetStringData("category/breed", "the name of the animal's");
+            string animalDietPlanName = UserInterface.GetStringData("diet plan", "the name of the animal's");
 
+            Animal newAnimal = new Animal();
+            animal.CategoryId = Query.GetCategoryId(animalCategoryName);
+            animal.Name = UserInterface.GetStringData("name", "the animal's");
+            animal.Age = UserInterface.GetIntegerData("age", "the animal's");
+            animal.Demeanor = UserInterface.GetStringData("demeanor", "the animal's");
+            animal.KidFriendly = UserInterface.GetBitData("the animal", "child friendly");
+            animal.PetFriendly = UserInterface.GetBitData("the animal", "pet friendly");
+            animal.Weight = UserInterface.GetIntegerData("the animal", "the weight of the");
+            animal.DietPlanId = Query.GetDietPlanId(animalDietPlanName);
+            Query.AddAnimal(animal);
+            db.SubmitChanges();
         }
         internal static Animal GetAnimalByID(int id)
         {
             return db.Animals.SingleOrDefault(b => b.AnimalId == id);
         }
-
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
             Animal animalFromDb = null;
-
             try
             {
                 animalFromDb = db.Animals.Where(g => g.AnimalId == animalId).SingleOrDefault();
@@ -270,7 +263,7 @@ namespace HumaneSociety
                     case 6:
                         animalFromDb.PetFriendly = Convert.ToBoolean(value.Value);
                         break;
-                    case 7:
+                   case 7:
                         animalFromDb.Weight = int.Parse(value.Value);
                         break;
                     default:
@@ -283,9 +276,7 @@ namespace HumaneSociety
         {
             db.Animals.DeleteOnSubmit(animal);
             db.SubmitChanges();
-
         }
-
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
@@ -297,10 +288,11 @@ namespace HumaneSociety
             var theintineed = db.Categories.Where(a => a.Name == categoryName).Select(a => a.CategoryId).FirstOrDefault();
             return theintineed;
         }
-
         internal static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            Room room = db.Rooms.Where(r => r.AnimalId == animalId).Single();
+            return room;
+
         }
 
         internal static int GetDietPlanId(string dietPlanName)
