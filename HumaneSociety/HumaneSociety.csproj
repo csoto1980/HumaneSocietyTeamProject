@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HumaneSociety.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Notebook.cs" />
     <Compile Include="PointOfEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
