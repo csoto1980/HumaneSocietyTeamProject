@@ -166,9 +166,52 @@ namespace HumaneSociety
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
-            throw new NotImplementedException();
+            // do basiclly same stuff as we do for the animals
+            // create 
+            // delete
+            // update
+            switch (crudOperation)
+            {
+                case "Create":
+                    db.Employees.InsertOnSubmit(employee);
+                    break;
+                case "Read":
+                    Console.WriteLine(employee.FirstName,employee.LastName,employee.UserName,employee.Password,employee.Email);
+                    Console.Read();
+                    break;
+                case "Update":
+                    ///updatemethod
+                    UpdateEmployee(employee);
+                    break;
+                case "Delete":
+                    db.Employees.DeleteOnSubmit(employee);
+                    break;
+            }
+            db.SubmitChanges();
         }
+        internal static void UpdateEmployee( Employee employeeWithUpdates)
+        {
+            Employee employeeFromDb = null;
 
+            try
+            {
+                employeeFromDb = db.Employees.Where(f => f.EmployeeId == employeeWithUpdates.EmployeeId).Single();
+            }
+            catch (InvalidOperationException f)
+            {
+                Console.WriteLine("No clients have a ClientId that matches the Client passed in.");
+                Console.WriteLine("No update have been made.");
+                return;
+            }
+
+            // update clientFromDb information with the values on clientWithUpdates (aside from address)
+            employeeFromDb.FirstName = employeeWithUpdates.FirstName;
+            employeeFromDb.LastName = employeeWithUpdates.LastName;
+            employeeFromDb.UserName = employeeWithUpdates.UserName;
+            employeeFromDb.Password = employeeWithUpdates.Password;
+            employeeFromDb.Email = employeeWithUpdates.Email;
+
+        }
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
@@ -176,18 +219,59 @@ namespace HumaneSociety
         }
 
         internal static Animal GetAnimalByID(int id)
-        {
-            throw new NotImplementedException();
+        { 
+           return db.Animals.SingleOrDefault(b => b.AnimalId == id);
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
-        {            
-            throw new NotImplementedException();
-        }
+        {
+            Animal animalFromDb = null;
 
+            try
+            {
+                animalFromDb = db.Animals.Where(g => g.AnimalId == animalId).SingleOrDefault();
+            }
+            catch (InvalidOperationException g)
+            {
+                Console.WriteLine("No clients have a ClientId that matches the Client passed in.");
+                Console.WriteLine("No update have been made.");
+                return;
+            }
+            foreach (KeyValuePair<int, string> value in updates)
+            {
+                switch (value.Key)
+                {
+                    case 1:
+                        animalFromDb.Category.Name = value.Value;
+                        break;
+                    case 2:
+                        animalFromDb.Name = value.Value;
+                        break;
+                    case 3:
+                        animalFromDb.Age = int.Parse(value.Value);
+                        break;
+                    case 4:
+                        animalFromDb.Demeanor = value.Value;
+                            break;
+                    case 5:
+                        animalFromDb.KidFriendly = Convert.ToBoolean(value.Value);
+                        break;
+                    case 6:
+                        animalFromDb.PetFriendly = Convert.ToBoolean(value.Value);
+                        break;
+                    case 7:
+                        animalFromDb.Weight = int.Parse(value.Value);
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            db.SubmitChanges();
+        }
         internal static void RemoveAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            db.Animals.DeleteOnSubmit(animal);
         }
         
         // TODO: Animal Multi-Trait Search
@@ -199,7 +283,8 @@ namespace HumaneSociety
         // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
-            throw new NotImplementedException();
+           db.Categories.SingleOrDefault(e => e.CategoryId == categoryName.CategoryId);
+           
         }
         
         internal static Room GetRoom(int animalId)
