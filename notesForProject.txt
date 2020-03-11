@@ -37,3 +37,20 @@ select 109
 select 110
 --insert into dbo.rooms(roomnumber)
 select 111
+
+diet plans
+
+insert into dbo.dietplans(Name, foodtype, foodamountincups)
+select 'purina one', 'dog food', 2
+insert into dbo.dietplans(Name, foodtype, foodamountincups)
+select 'purina one', 'cat food', 1
+insert into dbo.dietplans(Name, foodtype, foodamountincups)
+select 'premium encore', 'rabbit food', 1
+insert into dbo.dietplans(Name, foodtype, foodamountincups)
+select 'wild harvest', 'hamster food', 1
+insert into dbo.dietplans(Name, foodtype, foodamountincups)
+select 'Classic Nutri-Berries', 'bird food', 1
+
+
+
+
