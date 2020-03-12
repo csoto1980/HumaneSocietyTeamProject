@@ -297,39 +297,66 @@ namespace HumaneSociety
 
         internal static int GetDietPlanId(string dietPlanName)
         {
-            var dietPlanFromDb = db.DietPlans.Where(a => a.Name == dietPlanName).Select(a => a.DietPlanId).FirstOrDefault();
+            int dietPlanFromDb = db.DietPlans.Where(a => a.Name == dietPlanName).Select(a => a.DietPlanId).FirstOrDefault();
             return dietPlanFromDb;
         }
         // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
         {
-            throw new NotImplementedException();
+            Adoption adoption = new Adoption();
+            adoption.AdoptionFee = 75;
+            adoption.AnimalId = animal.AnimalId;
+            //adoption.Animal = animal.;
+            adoption.ClientId = client.ClientId;
+            adoption.ApprovalStatus = "Pending";
+            adoption.PaymentCollected = true;
+            db.Adoptions.InsertOnSubmit(adoption);
+            db.SubmitChanges();
+                        
         }
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
-            throw new NotImplementedException();
+            return db.Adoptions;
+            // got help for this one but not sure how to get to only show pending 
         }
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
-            throw new NotImplementedException();
+            Adoption defaultData = null;
+            defaultData = db.Adoptions.Where(j => j.AnimalId == adoption.AnimalId && j.ClientId == adoption.ClientId).FirstOrDefault();
+            defaultData.ApprovalStatus = isAdopted.ToString();
         }
 
         internal static void RemoveAdoption(int animalId, int clientId)
         {
-            throw new NotImplementedException();
+            Adoption removeAdoptionFromDb = null;
+            removeAdoptionFromDb = db.Adoptions.Where(k => k.AnimalId == animalId && k.ClientId == clientId).FirstOrDefault();
+            db.Adoptions.DeleteOnSubmit(removeAdoptionFromDb);
+            db.SubmitChanges();
+            // got some advice on this one i think this works
         }
 
         // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
-            throw new NotImplementedException();
+            IQueryable<AnimalShot> animalShotsFromDb = null;
+            animal.AnimalShots.Where(k => k.AnimalId == animal.AnimalId);
+            return animalShotsFromDb;
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
         {
-            throw new NotImplementedException();
+            Shot shot = new Shot();
+            shotName = shot.Name;
+            db.Shots.InsertOnSubmit(shot);
+            db.SubmitChanges();
+            AnimalShot animalShotForDb = new AnimalShot();
+            animalShotForDb.AnimalId = animal.AnimalId;
+            animalShotForDb.ShotId = shot.ShotId;
+            animalShotForDb.DateReceived = DateTime.Now;
+            db.AnimalShots.InsertOnSubmit(animalShotForDb);
+            db.SubmitChanges();
         }
 
     }
