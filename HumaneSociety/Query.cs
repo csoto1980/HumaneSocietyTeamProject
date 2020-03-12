@@ -70,7 +70,6 @@ namespace HumaneSociety
 
             db.SubmitChanges();
         }
-
         internal static void UpdateClient(Client clientWithUpdates)
         {
             // find corresponding Client from Db
@@ -277,61 +276,80 @@ namespace HumaneSociety
             db.Animals.DeleteOnSubmit(animal);
             db.SubmitChanges();
         }
-        // TODO: Animal Multi-Trait Search
-        internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
+        internal static List<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-            throw new NotImplementedException();
+            List<Animal> animals = db.Animals.ToList();
+            foreach (KeyValuePair<int, string> update in updates)
+            {
+                switch (update.Key)
+                {
+                    case 1:
+                        animals = animals.Where(s => s.CategoryId == Convert.ToInt32(update.Value)).ToList();
+                        break;
+                    case 2:
+                        animals = animals.Where(s => s.Name == (update.Value)).ToList();
+                        break;
+                    case 3:
+                        animals = animals.Where(s => s.Age == Convert.ToInt32(update.Value)).ToList();
+                        break;
+                    case 4:
+                        animals = animals.Where(s => s.Demeanor == (update.Value)).ToList();
+                        break;
+                    case 5:
+                        animals = animals.Where(s => s.KidFriendly == Convert.ToBoolean(update.Value)).ToList();
+                        break;
+                    case 6:
+                        animals = animals.Where(s => s.PetFriendly == Convert.ToBoolean(update.Value)).ToList();
+                        break;
+                    case 7:
+                        animals = animals.Where(s => s.Weight == Convert.ToInt32(update.Value)).ToList();
+                        break;
+                    case 8:
+                        animals = animals.Where(s => s.AnimalId == Convert.ToInt32(update.Value)).ToList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return animals;
         }
-        // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
             var theintneeded = db.Categories.Where(a => a.Name == categoryName).Select(a => a.CategoryId).FirstOrDefault();
             return theintneeded;
-
         }
         internal static Room GetRoom(int animalId)
         {
             Room room = db.Rooms.Where(r => r.AnimalId == animalId).Single();
             return room;
-
         }
-
         internal static int GetDietPlanId(string dietPlanName)
         {
             throw new NotImplementedException();
         }
-        // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
         {
             throw new NotImplementedException();
         }
-
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
             throw new NotImplementedException();
         }
-
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
             throw new NotImplementedException();
         }
-
         internal static void RemoveAdoption(int animalId, int clientId)
         {
             throw new NotImplementedException();
         }
-
-        // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
             throw new NotImplementedException();
         }
-
         internal static void UpdateShot(string shotName, Animal animal)
         {
             throw new NotImplementedException();
         }
-
     }
-
 }
